@@ -1,3 +1,5 @@
 base:
   '*':
+    - auth
     - webserver
+    - django

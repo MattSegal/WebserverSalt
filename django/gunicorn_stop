@@ -1,0 +1,4 @@
+#!/bin/bash
+NAME="links" # Name of the application
+pkill $NAME -e
+exit 0

@@ -9,6 +9,7 @@ nginx:
             - file: /etc/nginx/nginx.conf
             - file: /etc/nginx/sites-enabled/default
             - file: /etc/nginx/sites-enabled/website
+            - file: /etc/nginx/sites-available/website
 
 
 /var/www:
