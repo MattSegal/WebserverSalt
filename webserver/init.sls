@@ -18,6 +18,11 @@ nginx:
         - require:
             - pkg: nginx
 
+/var/static:
+    file.directory:
+        - user: www-data
+        - require:
+            - pkg: nginx
 
 /var/www/index.html:
     file.managed:

@@ -1,13 +1,12 @@
 #!/bin/bash
+ARG1=${1:-start
+}
 
-NAME="links"                                        # Name of the application
-DJANGODIR=/var/webapps/links/app                        # Django project directory
-LOGFILE=/var/webapps/links/gunicorn.log                 # Log file
 NUM_WORKERS=3                                       # how many worker processes should Gunicorn spawn
-DJANGO_SETTINGS_MODULE=links.settings               # which settings file should Django use
-DJANGO_WSGI_MODULE=links.wsgi                       # WSGI module name
+DJANGO_SETTINGS_MODULE="${APP_NAME}.settings"       # which settings file should Django use
+DJANGO_WSGI_MODULE="${APP_NAME}.wsgi"                # WSGI module name
 
-echo "Starting $NAME as `whoami`"
+echo "Starting $APP_NAME as `whoami`"
 
 # Activate the virtual environment
 cd $DJANGODIR
@@ -20,13 +19,13 @@ if [ $1 == 'deploy' ]
 then 
     pip install -r ./requirements.txt
     python ./manage.py migrate
+    python ./manage.py collectstatic --noinput
 fi
 
 # Start your Django Unicorn
-# Programs meant to be run under supervisor should not daemonize themselves (do not use --daemon)
 exec gunicorn ${DJANGO_WSGI_MODULE}:application \
   --daemon \
-  --name $NAME \
+  --name "$APP_NAME" \
   --workers $NUM_WORKERS \
   --log-level=debug \
   --log-file="$LOGFILE"

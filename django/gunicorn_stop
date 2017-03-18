@@ -1,4 +1,3 @@
 #!/bin/bash
-NAME="links" # Name of the application
-pkill $NAME -e
-exit 0
+echo "Attempting to stop gunicorn"
+ killall -v gunicorn || true

@@ -15,16 +15,14 @@ server {
 
     # Django media files
     # TODO: What is a media file?
-    location /media  {
-        #alias /var/www/path/to/your/project/media;
-        try_files $uri/ /index.html;
-    }
+    #location /media  {
+    #    #alias /var/www/path/to/your/project/media;
+    #    try_files $uri/ /index.html;
+    #}
 
     # Django static files
-    # TODO: Figure out how to server static files
     location /static {
-        #alias /var/www/path/to/your/project/static;
-        try_files $uri/ /index.html;
+        alias /var/static;
     }
 
     location / {
