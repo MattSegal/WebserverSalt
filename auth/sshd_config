@@ -31,3 +31,4 @@ StrictModes yes
 RSAAuthentication yes
 PubkeyAuthentication yes
 AuthorizedKeysFile %h/.ssh/authorized_keys
+Subsystem sftp internal-sftp
